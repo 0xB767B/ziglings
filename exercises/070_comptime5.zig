@@ -119,8 +119,8 @@ fn isADuck(possible_duck: anytype) bool {
     // Please make sure MyType has both waddle() and quack()
     // methods:
     const MyType = @TypeOf(possible_duck);
-    const walks_like_duck = ???;
-    const quacks_like_duck = ???;
+    const walks_like_duck = @hasDecl(@TypeOf(possible_duck), "waddle");
+    const quacks_like_duck = @hasDecl(@TypeOf(possible_duck), "quack");
 
     const is_duck = walks_like_duck and quacks_like_duck;
 
@@ -136,6 +136,6 @@ fn isADuck(possible_duck: anytype) bool {
         // error, not a runtime panic or crash!
         possible_duck.quack();
     }
-        
+
     return is_duck;
 }
